@@ -55,3 +55,48 @@
     * pip install djangorestframework
     * after installing, add to installed apps in settings.py
     * 'rest_framework',
+
+6. Creating API views
+    * in views.py create a function with parameter request
+    * def product_list(request):
+        pass
+    * from django.http import HttpResponse
+    * inside view function, return an HttpResponse('Hey')
+    * then map this view function with a url pattern
+    
+    * in django, we have two classes HttpResponse, HttpRequest
+    * in djangorestframework it has it's own Response, Request classes
+    * which is simpler and more powerful than django's
+
+    * for using them
+    * form rest_framework.decorators import api_view
+    * then apply this decorator to our view function '@api_view()'
+    * from this point, the parameter of that view function, request
+    * will be an instance of restframework's Request class
+    * now lets use the response class also
+    * from rest_framework.response import Response
+    * then simple replace HttpResponse with Response
+    * that's it - test it in browser
+    * # this new page is called browsable api
+    * helps to test our api endpoints in browser
+    * if a client app hits this api, this page is not gonna get visible
+    * it's only visible if we hits it in a browser
+
+    * on the page, the title we see is the name of our view function
+    * then which king of request we send (get)
+    * then http status (http 200 ok) 200  means ok
+    * then allowed methods, option method -> used to see all available methods of api
+    * content-type -> which type of data is in the response (application/json)
+    * Vary -> used for caching (will talk in future)
+    * then finaly, the body of response.
+
+    * # for creating url with parameters:
+      path('products/<id>/', views.product_detail),
+    * then go to view function, add a new parameter to it
+      def product_detail(request, id):
+    * now everything works but
+    * if someone types alphabet instead of id int values, it will work
+    * but it shoudn't
+    * for solving that, 
+      path('products/<int:id>/', views.product_detail),
+    * we added int: converter to our parameter
