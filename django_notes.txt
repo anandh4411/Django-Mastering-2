@@ -48,3 +48,10 @@
 
     * for deleting, we just need the id which is included in the url
     * no body is required
+
+5. Installing django REST framework
+    * it is a seperate framework the sits on top of django
+    * using this we can easily build rest apis using django
+    * pip install djangorestframework
+    * after installing, add to installed apps in settings.py
+    * 'rest_framework',
