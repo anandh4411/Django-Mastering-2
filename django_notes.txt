@@ -1,0 +1,50 @@
+# <-- PART 1 - REST APIs -->
+
+1. What is RESTful API?
+    * it's an interface for client apps (frontend) to access data
+    * API has different endpoints for performing different tasks
+    * eg: endpoint to add product, delete product, update orders etc.
+    * client app sent request to this endpoint
+    * our API endpoint sends a response back.
+
+    * What makes an API RESTFUL?
+    * Representational State Transfer (REST)
+    * There are some rules for servers and clients to communicate over internet
+    * those APIs who confirms to this rule is called RESTful API
+    * The main 3 concepts are -> Resources, Representations, HTTP Methods.
+
+2. Resources
+    * are some objects eg: products, collections, orders etc
+    * client apps can access them using a url (uniform resource locator)
+    * eg: https://anandh.xyz/reviews/1
+
+3. Resource Representations
+    * when a client request for a resource eg: product
+    * we need represent that resource in a format and give it to the client
+    * it may be in html, xml (old), json (modern) format
+    * server side representation is different
+    * in django, we represent a resourse as a model or a class
+    * but when we send that resource to a client, we makes it a json or other format
+    * # we uses json the most (javascript object notation)
+    * # they are key value pairs and keys will be strings ""
+    * {
+        "name" : "Anandh",
+        "age" : 21
+      }
+
+4. HTTP Methods
+    * get -> get resource
+    * post -> create resource
+    * put -> update resource
+    * patch -> for updating part of it (like subset of properties)
+    * delete -> delete resource
+    
+    * eg: while creating product, we sends a post request to api endpoint
+    * in body of the request we should have a json object with product details
+    
+    * eg: while updating all properties of product -> put request with id
+    * eg: while updating only some properties of product -> patch request with id
+    * url: /products/1
+
+    * for deleting, we just need the id which is included in the url
+    * no body is required
