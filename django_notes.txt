@@ -100,3 +100,44 @@
     * for solving that, 
       path('products/<int:id>/', views.product_detail),
     * we added int: converter to our parameter
+
+7. Creating Serializers
+    * now after creating the view
+    * instead of return an http response, we need to return oru product objects
+    * in a json format
+    
+    * # in djangorestframework we have a class named JSONRenderer
+    * this class has a method called render(dictionary)
+    * it takes a dictionary object and converts it into a json object
+
+    * if we convert our product object into a python dictionary
+    * we can pass that dictionary into the render function and get json 
+    * This is were serializers come into picture
+
+    * # Serializer converts a model instance into a python dictionary
+    * first create a file named serializers.py in our app
+    * from rest_framework import serializers 
+    * serializers module is imported
+    * now create a class for our model, here product
+    * class ProductSerialzer(serializers.Serializer):
+    * it is inherited form Serializer
+    
+    * now we need to decide which fields should we serialize and pass through the api
+    * because not all the fields belongs to the external representation
+    * some attributes or fields contains sensitive information, and it is internal re
+    * so we don't want to display it to the client
+    * after selecting the fileds, define it just like we did in model class
+    * instead of model, we uses serializer.
+    * # id = serializer.IntegerField()
+    * for finding all the fields available, go to django-rest-framework.org
+    * under api guide, see serializer fields.
+    * there are some attributes also available like readonly, writeonly etc
+    * # title = serializer.CharField(max_length=255)
+    * we passed max_lenght=255 here because
+    * we will use this serializer also for recieving products
+    * so we want make sure that recieved product's title won't exceed 255
+    * will talk more later
+    * # unit_price = serializers.DecimalField(max_digits=6, decimal_places=2)
+    * the field names can be anything, no need to mach the model
+    * so we can set it to price also. but for consistency let it be unit_price
+    * that's it. Serializer is ready, now we need to serialize some model objects
